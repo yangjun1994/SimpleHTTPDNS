@@ -2,7 +2,8 @@
 A very simple HttpDns Server Script based on PHP.
 
 # Install
-Just upload Server/httpdns.php to your htdocs, and set correct permission to let users can access this file at http(s)://yourhost:port/dirofthisphpfile/httpdns.php (Very simple, isn't it?)
+Upload Server/httpdns.php to your htdocs, and set correct permission to let users can access this file at http(s)://yourhost:port/dirofthisphpfile/httpdns.php
+To create Database tables, run http(s)://yourhost:port/dirofthisphpfile/install.php
 
 #Useage
 Request the domain by use Get method.
@@ -29,8 +30,8 @@ Like this :
 And if not found a Get method request, it will return "Wrong Request!"
 
 #TODO List
-Add cache function
+~~Add cache function~~
 
-Add priority level of IPs
+~~Add priority level of IPs~~
 
 Given different IPs if users use different networks
