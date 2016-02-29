@@ -29,6 +29,11 @@ Like this :
 
 And if not found a Get method request, it will return "Wrong Request!"
 
+# Admintools
+Domain DB management page at http(s)://yourhost:port/dirofthisphpfile/admintools/changedomaindb.php
+
+Cache management page at http(s)://yourhost:port/dirofthisphpfile/admintools/showcache.php
+
 #TODO List
 ~~Add cache function~~
 
