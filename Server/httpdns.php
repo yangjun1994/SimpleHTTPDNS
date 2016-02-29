@@ -10,7 +10,9 @@ if ($reqdomain != null) { //Request format right?
         if ($ipfromcachedb == null) { //If not in Cache DB
             $ipofreqdomain = gethostbyname($reqdomain);
             echojsconformat ($reqdomain, $ipofreqdomain);
-            writecacheip ($reqdomain, $ipofreqdomain);
+            if ($reqdomain != $ipofreqdomain) {
+                writecacheip ($reqdomain, $ipofreqdomain);
+            }
         }
         else echojsconformat ($reqdomain, $ipfromcachedb); //If in Cache DB
     }
