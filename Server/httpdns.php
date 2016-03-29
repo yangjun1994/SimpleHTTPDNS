@@ -2,21 +2,22 @@
 include 'findip.php';
 include 'cache.php';
 
-$reqdomain = $_GET['domain'] ?? null; //Get Method?
-if ($reqdomain != null) { //Request format right?
-    $ipfromdomaindb = finddomainip($reqdomain) ?? null; //In Domain DB?
-    if ($ipfromdomaindb == null) { //If not in Domain DB
-        $ipfromcachedb = findcacheip($reqdomain) ?? null; //In Cache DB?
-        if ($ipfromcachedb == null) { //If not in Cache DB
+$src = $_GET['src'] ?? null;
+$reqdomain = $_GET['domain'] ?? null;
+if ($reqdomain != null) {
+    $ipfromcachedb = findcacheip($reqdomain) ?? null;
+    if ($ipfromcachedb == null) {
+        $ipfromdomaindb = finddomainip($reqdomain,$src) ?? null;
+        if ($ipfromdomaindb == null) {
             $ipofreqdomain = gethostbyname($reqdomain);
             echojsconformat ($reqdomain, $ipofreqdomain);
             if ($reqdomain != $ipofreqdomain) {
                 writecacheip ($reqdomain, $ipofreqdomain);
             }
         }
-        else echojsconformat ($reqdomain, $ipfromcachedb); //If in Cache DB
+        else echojsconformat ($reqdomain, $ipfromdomaindb);
     }
-    else echojsconformat ($reqdomain, $ipfromdomaindb); //If in Domain DB
+    else echojsconformat ($reqdomain, $ipfromcachedb);
 }
 else echo "Wrong Request!";
 

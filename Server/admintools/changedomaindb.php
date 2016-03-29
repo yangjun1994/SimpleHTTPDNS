@@ -8,7 +8,7 @@ if (isset($_GET['delid'])) {
     deldata($_GET['delid']);
 }
 if (isset($_POST['domain'])) {
-    adddata($_POST['domain'], $_POST['ip'], $_POST['priority']);
+    adddata($_POST['domain'], $_POST['ip'], $_POST['priority'], $_POST['src']);
 }
 echo <<<EOF
 <h1>Domain DB</h1>
@@ -18,11 +18,12 @@ echo <<<EOF
 <th>Domain</th>
 <th>IP</th>
 <th>Priority</th>
+<th>Src</th>
 <th>Delete?</th>
 </tr>
 EOF;
 
-$sql = " SELECT id, domain, ip, priority from domain ";
+$sql = " SELECT id, domain, ip, priority, src from domain ";
 
 $result = mysqli_query ($conn, $sql);
 
@@ -32,6 +33,7 @@ while($resultline = mysqli_fetch_array($result)) {
     <td>'.$resultline['domain'].'</td>
     <td>'.$resultline['ip'].'</td>
     <td>'.$resultline['priority'].'</td>
+    <td>'.$resultline['src'].'</td>
     <td>'."<a href=".$_SERVER['PHP_SELF']."?delid=".$resultline['id'].">delete</a>".'</td>
     </tr>';
 
@@ -42,6 +44,7 @@ echo '
 Add Domain: <input type="text" name="domain">
 IP: <input type="text" name="ip">
 Priority: <input type="text" name="priority">
+Src: <input type="text" name="src">
 <input type="submit">
 </form>
 ';
@@ -59,9 +62,9 @@ function cleardata() {
     mysqli_query ($conn, $sql);
 }
 
-function adddata($domain, $ip, $priority) {
+function adddata($domain, $ip, $priority, $src) {
     include '../conn.php';
-    $sql = " INSERT into domain (domain, ip, priority) VALUES ('$domain','$ip','$priority') ";
+    $sql = " INSERT into domain (domain, ip, priority, src) VALUES ('$domain','$ip','$priority','$src') ";
     mysqli_query ($conn, $sql);
 }
 ?>

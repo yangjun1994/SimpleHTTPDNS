@@ -3,10 +3,11 @@ include 'conn.php';
 
 $installdomaindbsql = "
 CREATE TABLE domain (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 domain VARCHAR(30) NOT NULL,
 ip VARCHAR(15) NOT NULL,
-priority INT(3)
+src VARCHAR(15) NOT NULL,
+priority INT(20) NOT NULL
 );
 
 "; //Create Domain table
@@ -18,7 +19,7 @@ if (mysqli_query($conn, $installdomaindbsql)) {
 }
 $installcachedbsql = "
 CREATE TABLE cache (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 domain VARCHAR(30) NOT NULL,
 ip VARCHAR(15) NOT NULL
 );
