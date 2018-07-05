@@ -2,12 +2,12 @@
 include 'findip.php';
 include 'cache.php';
 
-$src = $_GET['src'] ?? null;
-$reqdomain = $_GET['domain'] ?? null;
+$src = $_GET['src'] ?: null;
+$reqdomain = $_GET['domain'] ?: null;
 if ($reqdomain != null) {
-    $ipfromcachedb = findcacheip($reqdomain) ?? null;
+    $ipfromcachedb = findcacheip($reqdomain) ?: null;
     if ($ipfromcachedb == null) {
-        $ipfromdomaindb = finddomainip($reqdomain,$src) ?? null;
+        $ipfromdomaindb = finddomainip($reqdomain,$src) ?: null;
         if ($ipfromdomaindb == null) {
             $ipofreqdomain = gethostbyname($reqdomain);
             echojsconformat ($reqdomain, $ipofreqdomain);
